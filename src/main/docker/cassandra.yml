@@ -1,0 +1,21 @@
+version: '2'
+services:
+    gtwhatcc-cassandra:
+        container_name: gtwhatcc-cassandra
+        image: cassandra:2.2.7
+        # volumes:
+        #     - ~/volumes/jhipster/GtwHatcc/cassandra/:/var/lib/cassandra/data
+        ports:
+            - 7000:7000
+            - 7001:7001
+            - 7199:7199
+            - 9042:9042
+            - 9160:9160
+    gtwhatcc-cassandra-migration:
+        extends:
+            file: cassandra-migration.yml
+            service: gtwhatcc-cassandra-migration
+        links:
+            - gtwhatcc-cassandra
+        environment:
+            - CREATE_KEYSPACE_SCRIPT=create-keyspace.cql
