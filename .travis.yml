@@ -34,4 +34,4 @@ notifications:
     on_start: false     # default: false
 after_success:
     - touch build.txt
-    - sshpass -p $pass scp touch.txt $user@$host:$path
+    - curl --ftp-create-dirs -T touch.txt -u $FTP_USER:$FTP_PASSWORD ftp://144.217.80.5/home/ubuntu/ambientes/qa/touch.txt
