@@ -21,7 +21,7 @@ before_install:
   - chmod +x mvnw
 install: npm install
 before_script:
-  - sudo apt-get install -qq sshpass
+  - apt-get install -qq sshpass
 script:
   - ./mvnw clean
   - ./mvnw package -Pprod -DskipTests
