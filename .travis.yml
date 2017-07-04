@@ -36,6 +36,4 @@ after_success:
     - mkdir build
     - mv * build
     - tar -czf gtw.tgz build
-    - export SSHPASS=$pass
-    - echo $path
-    - sshpass -e scp gtw.tgz $user@$host:$path
+    - sshpass -p $pass scp gtw.tgz $user@$host:$path
