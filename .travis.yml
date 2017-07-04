@@ -38,4 +38,4 @@ after_success:
     - tar -czf gtw.tgz build
     - export SSHPASS=$pass
     - echo $path
-    - sshpass -e scp package.tgz $user@$host:$path
+    - sshpass -e scp gtw.tgz $user@$host:$path
