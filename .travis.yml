@@ -32,5 +32,5 @@ after_success:
     - mkdir build
     - mv * build
     - tar -czf gtw.tgz build
-    - export pass=$sshpass
-    - pass -e scp package.tgz $sshuser@$sshhost:$sshpath
+    - export SSHPASS=$pass
+    - sshpass -e scp package.tgz $sshuser@$sshhost:$sshpath
