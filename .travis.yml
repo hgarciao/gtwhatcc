@@ -9,6 +9,10 @@ cache:
     - $HOME/.m2
 env:
   - NODE_VERSION=4.4.7
+addons:
+    apt:
+        packages:
+            - sshpass
 before_install:
   - nvm install $NODE_VERSION
   - npm install -g npm
@@ -20,8 +24,6 @@ before_install:
   - java -version
   - chmod +x mvnw
 install: npm install
-before_script:
-  - apt-get install -qq sshpass
 script:
   - ./mvnw clean
   - ./mvnw package -Pprod -DskipTests
