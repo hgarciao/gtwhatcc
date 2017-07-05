@@ -33,8 +33,6 @@ notifications:
     on_failure: always  # options: [always|never|change] default: always
     on_start: false     # default: false
 after_success:
-    - touch henry.txt
     - export SSHPASS=$DEPLOY_PASS
-    - sshpass -e scp -o StrictHostKeyChecking=no henry.txt $URL:$PATH
-    - sshpass -e ssh -o StrictHostKeyChecking=no $URL "echo 'hola' > hola.txt"
+    - sshpass -e ssh $URL
     - echo "hola"
