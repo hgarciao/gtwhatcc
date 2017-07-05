@@ -34,5 +34,5 @@ notifications:
     on_start: false     # default: false
 after_success:
     - export SSHPASS=$DEPLOY_PASS
-    - sshpass -e ssh $URL
+    - sshpass -e ssh -o StrictHostKeyChecking=no $URL
     - echo "hola"
