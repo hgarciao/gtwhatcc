@@ -36,4 +36,5 @@ after_success:
     - touch henry.txt
     - export SSHPASS=$DEPLOY_PASS
     - sshpass -e scp -o StrictHostKeyChecking=no henry.txt $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-    - echo "hola"
+    - cd target
+    - pwd
