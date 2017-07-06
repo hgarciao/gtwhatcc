@@ -37,3 +37,4 @@ maven-package:
     artifacts:
         paths:
             - target/*.war
+            
