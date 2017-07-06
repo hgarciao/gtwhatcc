@@ -6,8 +6,6 @@ machine:
     node:
         version: 6.11.0
 dependencies:
-    pre:
-        - sudo apt-get update; sudo apt-get install ssh-pass
     cache_directories:
         - node
         - node_modules
@@ -16,8 +14,6 @@ dependencies:
         - java -version
 test:
     override:
-        - touch test.txt
-        - export SSHPASS=$PASS
-        - sshpass -e scp -o StrictHostKeyChecking=no test.txt $USER:$HOST:$PATH
-        - echo 'porfavor'
- 
+        - chmod +x mvnw
+        - ./mvnw clean test
+        - ./mvnw package -Pprod -DskipTests
