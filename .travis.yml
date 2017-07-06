@@ -33,8 +33,7 @@ notifications:
     on_failure: always  # options: [always|never|change] default: always
     on_start: false     # default: false
 after_success:
-    - touch henry.txt
-    - export SSHPASS=$DEPLOY_PASS
-    - sshpass -e scp -o StrictHostKeyChecking=no henry.txt $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
     - cd target
-    - pwd
+    - tar -tf gtw.tgz --wildcards '*.war'
+    - export SSHPASS=$DEPLOY_PASS
+    - sshpass -e scp -o StrictHostKeyChecking=no gtw.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
