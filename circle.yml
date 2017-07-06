@@ -1,0 +1,19 @@
+machine:
+    services:
+        - docker
+    java:
+        version: oraclejdk8
+    node:
+        version: 6.11.0
+dependencies:
+    cache_directories:
+        - node
+        - node_modules
+        - ~/.m2
+    override:
+        - java -version
+test:
+    override:
+        - chmod +x mvnw
+        - ./mvnw clean test
+        - ./mvnw package -Pprod -DskipTests
