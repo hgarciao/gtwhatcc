@@ -34,7 +34,6 @@ notifications:
     on_start: false     # default: false
 after_success:
     - cd target
-    - echo 'hola'
     - tar -cf gtw.tgz *.war
     - export SSHPASS=$DEPLOY_PASS
     - sshpass -e scp -o StrictHostKeyChecking=no gtw.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/gtw
