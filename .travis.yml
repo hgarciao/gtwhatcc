@@ -38,3 +38,4 @@ after_success:
     - tar -cf gtw.tgz *.war
     - export SSHPASS=$DEPLOY_PASS
     - sshpass -e scp -o StrictHostKeyChecking=no gtw.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/$TRAVIS_BRANCH/deploy/gtw
+    - test $TRAVIS_BRANCH != "dev" && sshpass -e ssh -f -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/$TRAVIS_BRANCH/deploy/gtw/deploy.sh
