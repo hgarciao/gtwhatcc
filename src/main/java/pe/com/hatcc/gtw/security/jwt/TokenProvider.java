@@ -46,16 +46,16 @@ public class TokenProvider {
     }
 
     public String createToken(Authentication authentication, Boolean rememberMe) {
-        String authorities = authentication.getAuthorities().stream()
+    	String authorities = authentication.getAuthorities().stream()
             .map(authority -> authority.getAuthority())
             .collect(Collectors.joining(","));
 
         long now = (new Date()).getTime();
         Date validity;
         if (rememberMe) {
-            validity = new Date(now + this.tokenValidityInSecondsForRememberMe);
+            validity = new Date(now + tokenValidityInSecondsForRememberMe);
         } else {
-            validity = new Date(now + this.tokenValidityInSeconds);
+            validity = new Date(now + tokenValidityInSeconds);
         }
 
         return Jwts.builder()
@@ -79,12 +79,14 @@ public class TokenProvider {
 
         User principal = new User(claims.getSubject(), "",
             authorities);
+        
 
         return new UsernamePasswordAuthenticationToken(principal, "", authorities);
     }
 
     public boolean validateToken(String authToken) {
         try {
+        	
             Jwts.parser().setSigningKey(secretKey).parseClaimsJws(authToken);
             return true;
         } catch (SignatureException e) {
