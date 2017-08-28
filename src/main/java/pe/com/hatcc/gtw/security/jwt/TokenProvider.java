@@ -57,10 +57,11 @@ public class TokenProvider {
         } else {
             validity = new Date(now + tokenValidityInSeconds);
         }
-
+        System.out.println(authentication.getPrincipal());
         return Jwts.builder()
             .setSubject(authentication.getName())
             .claim(AUTHORITIES_KEY, authorities)
+            //.claim("clickdate", )
             .signWith(SignatureAlgorithm.HS512, secretKey)
             .setExpiration(validity)
             .compact();

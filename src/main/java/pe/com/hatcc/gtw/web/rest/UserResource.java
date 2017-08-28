@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -199,4 +201,31 @@ public class UserResource {
         userService.deleteUser(login);
         return ResponseEntity.ok().headers(HeaderUtil.createAlert( "A user is deleted with identifier " + login, login)).build();
     }
+    
+    
+    /*Modificado hgarcia 27/08*/
+    
+    /**
+     * PUT  /users : Updates an existing User.
+     *
+     * @param managedUserVM the user to update
+     * @return the ResponseEntity with status 200 (OK) and with body the updated user,
+     * or with status 400 (Bad Request) if the login or email is already in use,
+     * or with status 500 (Internal Server Error) if the user couldn't be updated
+     */
+    @RequestMapping(value = "/users/clickdate",
+        method = RequestMethod.PUT,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
+    public ResponseEntity<ManagedUserVM> updateUserClickDate(@RequestBody ManagedUserVM user) {
+        log.debug("REST request to update current session user by differences: {}", user);
+        userService.updateUserClickDate(user);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createAlert("A user is updated with identifier : "+ user.getId(), user.getId().toString()))
+            .body(null);
+    }
+    
+    
+    
 }

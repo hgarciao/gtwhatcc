@@ -141,6 +141,15 @@ public class UserService {
             log.debug("Changed Information for User: {}", u);
         });
     }
+    
+    public void updateUserClickDate(ManagedUserVM user) {
+        userRepository.findOneByLogin(user.getLogin()).ifPresent(u -> {
+        	u.setClickDate(user.getClickDate());
+            userRepository.save(u);
+            log.debug("Changed Information for User: {}", u);
+        });
+    }
+    
 
     public void updateUser(Long id, String login, String firstName, String lastName, String email,
         boolean activated, String langKey, Set<String> authorities) {

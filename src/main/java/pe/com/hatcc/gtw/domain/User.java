@@ -80,6 +80,10 @@ public class User extends AbstractAuditingEntity implements Serializable {
         joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
         inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "name")})
     private Set<Authority> authorities = new HashSet<>();
+    
+    //Ultimo click
+    @Column(name = "click_date", nullable = true)
+    private ZonedDateTime clickDate=null;
 
     public Long getId() {
         return id;
@@ -178,7 +182,15 @@ public class User extends AbstractAuditingEntity implements Serializable {
         this.authorities = authorities;
     }
 
-    @Override
+    public ZonedDateTime getClickDate() {
+		return clickDate;
+	}
+
+	public void setClickDate(ZonedDateTime clickDate) {
+		this.clickDate = clickDate;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

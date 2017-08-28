@@ -30,6 +30,8 @@ public class ManagedUserVM extends UserDTO {
     @NotNull
     @Size(min = PASSWORD_MIN_LENGTH, max = PASSWORD_MAX_LENGTH)
     private String password;
+    
+    private ZonedDateTime clickDate;
 
     public ManagedUserVM() {
     }
@@ -41,18 +43,20 @@ public class ManagedUserVM extends UserDTO {
         this.createdDate = user.getCreatedDate();
         this.lastModifiedBy = user.getLastModifiedBy();
         this.lastModifiedDate = user.getLastModifiedDate();
+        this.clickDate=user.getClickDate();
         this.password = null;
     }
 
     public ManagedUserVM(Long id, String login, String password, String firstName, String lastName,
                          String email, boolean activated, String langKey, Set<String> authorities,
-                         String createdBy, ZonedDateTime createdDate, String lastModifiedBy, ZonedDateTime lastModifiedDate) {
+                         String createdBy, ZonedDateTime createdDate, String lastModifiedBy, ZonedDateTime lastModifiedDate,ZonedDateTime clickDate) {
         super(login, firstName, lastName, email, activated, langKey, authorities);
         this.id = id;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
         this.lastModifiedBy = lastModifiedBy;
         this.lastModifiedDate = lastModifiedDate;
+        this.clickDate=clickDate;
         this.password = password;
     }
 
@@ -101,7 +105,15 @@ public class ManagedUserVM extends UserDTO {
         return password;
     }
 
-    @Override
+    public ZonedDateTime getClickDate() {
+		return clickDate;
+	}
+
+	public void setClickDate(ZonedDateTime clickDate) {
+		this.clickDate = clickDate;
+	}
+
+	@Override
     public String toString() {
         return "ManagedUserVM{" +
             "id=" + id +
@@ -109,6 +121,7 @@ public class ManagedUserVM extends UserDTO {
             ", createdDate=" + createdDate +
             ", lastModifiedBy='" + lastModifiedBy + '\'' +
             ", lastModifiedDate=" + lastModifiedDate +
+            ", clickDate=" + clickDate +
             "} " + super.toString();
     }
 }
