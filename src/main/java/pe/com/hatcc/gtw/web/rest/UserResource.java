@@ -213,17 +213,17 @@ public class UserResource {
      * or with status 400 (Bad Request) if the login or email is already in use,
      * or with status 500 (Internal Server Error) if the user couldn't be updated
      */
-    @RequestMapping(value = "/users/clickdate",
+    @RequestMapping(value = "/users/clickdate/{username}",
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    @Secured(AuthoritiesConstants.ADMIN)
-    public ResponseEntity<ManagedUserVM> updateUserClickDate(@RequestBody ManagedUserVM user) {
-        log.debug("REST request to update current session user by differences: {}", user);
-        userService.updateUserClickDate(user);
+    @Secured(AuthoritiesConstants.USER)
+    public ResponseEntity<ZonedDateTime> updateUserClickDate(@PathVariable String username) {
+        //log.debug("REST request to update current session user by differences: {}", username);
+        User result = userService.updateUserClickDate(username);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createAlert("A user is updated with identifier : "+ user.getId(), user.getId().toString()))
-            .body(null);
+            .headers(HeaderUtil.createAlert("A user is updated with identifier : "+ username, username))
+            .body(result.getClickDate());
     }
     
     

@@ -39,9 +39,14 @@ public class UserDetailsService implements org.springframework.security.core.use
             List<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
                     .map(authority -> new SimpleGrantedAuthority(authority.getName()))
                 .collect(Collectors.toList());
-            return new org.springframework.security.core.userdetails.User(lowercaseLogin,
+             //Clase USER usada por default en spring
+            /* return new org.springframework.security.core.userdetails.User(lowercaseLogin,
                 user.getPassword(),
-                grantedAuthorities);
+                grantedAuthorities);*/
+            //Clase ExtendedUSER creada para agregar atributos adicionales al usuario retornado
+            return new pe.com.hatcc.gtw.security.ExtendedUser(lowercaseLogin,
+                    user.getPassword(),
+                    grantedAuthorities,user.getClickDate());
         }).orElseThrow(() -> new UsernameNotFoundException("User " + lowercaseLogin + " was not found in the " +
         "database"));
     }

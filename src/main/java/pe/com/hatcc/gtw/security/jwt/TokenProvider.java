@@ -1,6 +1,7 @@
 package pe.com.hatcc.gtw.security.jwt;
 
 import pe.com.hatcc.gtw.config.JHipsterProperties;
+import pe.com.hatcc.gtw.security.ExtendedUser;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -57,11 +58,10 @@ public class TokenProvider {
         } else {
             validity = new Date(now + tokenValidityInSeconds);
         }
-        System.out.println(authentication.getPrincipal());
+        System.out.println(authentication.getPrincipal().getClass());
         return Jwts.builder()
             .setSubject(authentication.getName())
             .claim(AUTHORITIES_KEY, authorities)
-            //.claim("clickdate", )
             .signWith(SignatureAlgorithm.HS512, secretKey)
             .setExpiration(validity)
             .compact();

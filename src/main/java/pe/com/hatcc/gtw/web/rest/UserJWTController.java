@@ -1,5 +1,6 @@
 package pe.com.hatcc.gtw.web.rest;
 
+import pe.com.hatcc.gtw.security.ExtendedUser;
 import pe.com.hatcc.gtw.security.jwt.JWTConfigurer;
 import pe.com.hatcc.gtw.security.jwt.TokenProvider;
 import pe.com.hatcc.gtw.web.rest.vm.LoginVM;
@@ -45,7 +46,7 @@ public class UserJWTController {
             String jwt = tokenProvider.createToken(authentication, rememberMe);
             response.addHeader(JWTConfigurer.AUTHORIZATION_HEADER, "Bearer " + jwt);
             //Agregar hashmap :)
-            return ResponseEntity.ok(new JWTToken(jwt));
+            return ResponseEntity.ok(new JWTToken(jwt,((ExtendedUser)authentication.getPrincipal()).getClickDate()));
         } catch (AuthenticationException exception) {
             return new ResponseEntity<>(Collections.singletonMap("AuthenticationException",exception.getLocalizedMessage()), HttpStatus.UNAUTHORIZED);
         }
