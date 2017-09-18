@@ -191,6 +191,12 @@ public class UserService {
 			return u;
 		});
 	}
+	
+	
+	@Transactional(readOnly = true)
+	public List<User> getUserNamesByLogin(String login) {
+		return userRepository.findUserNamesByLoginLike(login);
+	}
 
 	@Transactional(readOnly = true)
 	public User getUserWithAuthorities(Long id) {
