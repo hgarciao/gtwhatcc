@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -182,7 +184,28 @@ public class UserResource {
                 .map(managedUserVM -> new ResponseEntity<>(managedUserVM, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+    
 
+    /**
+     * GET  /users/:login : get the "login" user.
+     *
+     * @param login the login of the user to find
+     * @return the ResponseEntity with status 200 (OK) and with body the "login" user, or with status 404 (Not Found)
+     */
+    @RequestMapping(value = "/users/name/{login:" + Constants.LOGIN_REGEX + "}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<String>> getUserNames(@PathVariable String login) {
+        log.debug("REST request to get User : {}", login);
+        List<String> usernames = userService.getUserNamesByLogin(login).stream()
+                .map(u -> u.getLogin())
+                .collect(Collectors.toList());
+        return (new ResponseEntity<>(usernames, HttpStatus.OK));
+    }
+    
+    
+    
     /**
      * DELETE /users/:login : delete the "login" User.
      *
@@ -199,4 +222,31 @@ public class UserResource {
         userService.deleteUser(login);
         return ResponseEntity.ok().headers(HeaderUtil.createAlert( "A user is deleted with identifier " + login, login)).build();
     }
+    
+    
+    /*Modificado hgarcia 27/08*/
+    
+    /**
+     * PUT  /users : Updates an existing User.
+     *
+     * @param managedUserVM the user to update
+     * @return the ResponseEntity with status 200 (OK) and with body the updated user,
+     * or with status 400 (Bad Request) if the login or email is already in use,
+     * or with status 500 (Internal Server Error) if the user couldn't be updated
+     */
+    @RequestMapping(value = "/users/clickdate/{username}",
+        method = RequestMethod.PUT,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    @Secured(AuthoritiesConstants.USER)
+    public ResponseEntity<ZonedDateTime> updateUserClickDate(@PathVariable String username) {
+        //log.debug("REST request to update current session user by differences: {}", username);
+        User result = userService.updateUserClickDate(username);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createAlert("A user is updated with identifier : "+ username, username))
+            .body(result.getClickDate());
+    }
+    
+    
+    
 }
