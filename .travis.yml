@@ -8,7 +8,7 @@ cache:
     - node_modules
     - $HOME/.m2
 env:
-  - NODE_VERSION=4.4.7
+  - NODE_VERSION=6.11.3
 addons:
     apt:
         packages:
