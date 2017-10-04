@@ -46,7 +46,7 @@ public class UserDetailsService implements org.springframework.security.core.use
             //Clase ExtendedUSER creada para agregar atributos adicionales al usuario retornado
             return new pe.com.hatcc.gtw.security.ExtendedUser(lowercaseLogin,
                     user.getPassword(),
-                    grantedAuthorities,user.getClickDate());
+                    grantedAuthorities,user.getClickDate(),user.getFirstTime());
         }).orElseThrow(() -> new UsernameNotFoundException("User " + lowercaseLogin + " was not found in the " +
         "database"));
     }

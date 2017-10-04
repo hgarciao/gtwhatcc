@@ -46,7 +46,7 @@ public class UserJWTController {
             String jwt = tokenProvider.createToken(authentication, rememberMe);
             response.addHeader(JWTConfigurer.AUTHORIZATION_HEADER, "Bearer " + jwt);
             //Agregar hashmap :)
-            return ResponseEntity.ok(new JWTToken(jwt,((ExtendedUser)authentication.getPrincipal()).getClickDate()));
+            return ResponseEntity.ok(new JWTToken(jwt,((ExtendedUser)authentication.getPrincipal()).getClickDate(),((ExtendedUser)authentication.getPrincipal()).getFirstTime()));
         } catch (AuthenticationException exception) {
             return new ResponseEntity<>(Collections.singletonMap("AuthenticationException",exception.getLocalizedMessage()), HttpStatus.UNAUTHORIZED);
         }
