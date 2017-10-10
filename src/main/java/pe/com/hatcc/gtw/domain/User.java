@@ -84,6 +84,12 @@ public class User extends AbstractAuditingEntity implements Serializable {
     //Ultimo click
     @Column(name = "click_date", nullable = true)
     private ZonedDateTime clickDate=null;
+    
+    //First time
+    @Column(name = "first_time", nullable = true)
+    private int firstTime=0;
+    
+    
 
     public Long getId() {
         return id;
@@ -188,6 +194,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
 	public void setClickDate(ZonedDateTime clickDate) {
 		this.clickDate = clickDate;
+	}
+
+	public int getFirstTime() {
+		return firstTime;
+	}
+
+	public void setFirstTime(int firstTime) {
+		this.firstTime = firstTime;
 	}
 
 	@Override

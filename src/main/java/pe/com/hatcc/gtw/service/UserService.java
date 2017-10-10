@@ -150,6 +150,15 @@ public class UserService {
 		return result;
 
 	}
+	
+	public User updateUserFirstTime(String user) {
+		User tmp = userRepository.findOneByLogin(user).get();
+		tmp.setFirstTime(1);
+		User result = userRepository.save(tmp);
+		log.debug("Changed Information for User: {}", result);
+		return result;
+	}
+
 
 	public void updateUser(Long id, String login, String firstName, String lastName, String email, boolean activated,
 			String langKey, Set<String> authorities) {

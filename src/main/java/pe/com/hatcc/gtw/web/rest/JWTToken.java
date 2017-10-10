@@ -11,6 +11,7 @@ public class JWTToken {
 
     private String idToken;
     private ZonedDateTime clickDate;
+    private int firstTime;
 
     public JWTToken(String idToken) {
         this.idToken = idToken;
@@ -18,9 +19,10 @@ public class JWTToken {
     
     
 
-    public JWTToken(String idToken, ZonedDateTime clickDate) {
+    public JWTToken(String idToken, ZonedDateTime clickDate,int firstTime) {
 		this.idToken = idToken;
 		this.clickDate = clickDate;
+		this.firstTime = firstTime;
 	}
 
 
@@ -41,6 +43,17 @@ public class JWTToken {
 	public void setClickDate(ZonedDateTime clickDate) {
 		this.clickDate = clickDate;
 	}
+
+	@JsonProperty("firsttime")
+	public int getFirstTime() {
+		return firstTime;
+	}
+	
+	public void setFirstTime(int firstTime) {
+		this.firstTime = firstTime;
+	}
+	
+	
     
     
 }

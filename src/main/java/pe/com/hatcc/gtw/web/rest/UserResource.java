@@ -248,5 +248,30 @@ public class UserResource {
     }
     
     
+    /*Modificado hgarcia 03/10*/
+    
+    /**
+     * PUT  /users : Updates an existing User.
+     *
+     * @param managedUserVM the user to update
+     * @return the ResponseEntity with status 200 (OK) and with body the updated user,
+     * or with status 400 (Bad Request) if the login or email is already in use,
+     * or with status 500 (Internal Server Error) if the user couldn't be updated
+     */
+    @RequestMapping(value = "/users/firsttime/{username}",
+        method = RequestMethod.PUT,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    @Secured(AuthoritiesConstants.USER)
+    public ResponseEntity<Integer> updateUserFirstTime(@PathVariable String username) {
+        //log.debug("REST request to update current session user by differences: {}", username);
+        User result = userService.updateUserFirstTime(username);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createAlert("A user is updated with identifier : "+ username, username))
+            .body(result.getFirstTime());
+    }
+    
+    
+    
     
 }
