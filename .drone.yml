@@ -1,6 +1,4 @@
-pipeline:
-  prueba:
-    image: jimador/docker-jdk-8-maven-node
-    commands:
-      - chmod +x mvnw
-      - chmod +x deploy.sh
+image: jimador/docker-jdk-8-maven-node
+commands:
+  - chmod +x mvnw
+  - chmod +x deploy.sh
