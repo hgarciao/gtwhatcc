@@ -2,6 +2,7 @@ pipeline:
   check-versions:
     image: jimador/docker-jdk-8-maven-node
     commands:
+      - npm install -g bower gulp-cli
       - node -v
       - npm -v
       - bower -v
