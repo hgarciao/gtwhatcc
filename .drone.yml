@@ -6,3 +6,5 @@ pipeline:
       - chmod +x mvnw
       - chmod +x deploy.sh
       - npm install
+      - ./mvnw clean
+      - ./mvnw package -Pdev -DskipTests
