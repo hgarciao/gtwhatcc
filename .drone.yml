@@ -13,5 +13,5 @@ pipeline:
     username: hgarcio
     password: h1o2g3o4o5o6
     repo: hgarcio/gtwhatcc
-    dockerfile: 
+    dockerfile: src/main/docker/Dockerfile
     tags: latest
