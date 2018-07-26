@@ -1,10 +1,17 @@
 pipeline:
-  check-versions:
-    image: jimador/docker-jdk-8-maven-node
+  build-node:
+    image: node:6
     commands:
-      - npm install -g bower gulp-cli
-      - chmod +x mvnw
-      - chmod +x deploy.sh
-      - npm install
-      - ./mvnw clean
-      - ./mvnw package -Pdev
+     - npm install -g npm
+     - npm install -g bower gulp-cli
+  build-java:
+    image: openjdk:8
+    commands:
+     - ./mvnw clean
+     - ./mvnw package -Pprod -DskipTests
+  docker:
+    image: plugins/docker
+    username: hgarcio
+    password: h1o2g3o4o5o6
+    repo: hgarcio/gtwhatcc
+    tags: latest
