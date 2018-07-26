@@ -4,7 +4,7 @@ pipeline:
     commands:
      - npm install -g bower gulp-cli
   build-java:
-    image: openjdk:8
+    image: openjdk:8-jdk-alpine3.8
     commands:
      - ./mvnw clean
      - ./mvnw package -Pprod -DskipTests
