@@ -1,8 +1,7 @@
 pipeline:
   build-node:
-    image: node:6
+    image: sickp/alpine-node:6.11.3-r1
     commands:
-     - npm install -g npm
      - npm install -g bower gulp-cli
   build-java:
     image: openjdk:8
@@ -14,4 +13,5 @@ pipeline:
     username: hgarcio
     password: h1o2g3o4o5o6
     repo: hgarcio/gtwhatcc
+    dockerfile: 
     tags: latest
