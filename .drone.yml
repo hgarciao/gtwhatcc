@@ -4,6 +4,10 @@ pipeline:
   build:
     image: hgarcio/alpine-node-java
     commands:
+     - npm --version
+     - node --version
+     - java --version
+     - npm install -g npm
      - npm install -g bower gulp-cli
      - chmod +x mvnw
      - ./mvnw clean
