@@ -1,13 +1,14 @@
 workspace:
   base: /base
 pipeline:
-  build-node:
-    image: openjdk:8-jre-alpine
+  build:
+    image: hgarcio/alpine-node-java
     commands:
+     - npm install -g bower gulp-cli
      - chmod +x mvnw
      - ./mvnw clean
      - ./mvnw package -Pprod -DskipTests > /base/out.txt
-  build-java:
+  logs:
     image: alpine
     commands:
      - apk update && apk add --no-cache openssh sshpass
@@ -15,4 +16,4 @@ pipeline:
      - ls
      - sshpass -p 'Cj57AQCn' scp -o StrictHostKeyChecking=no out.txt root@144.217.80.5:/root/out.txt
     when:
-        status:  [ failure ]
+        status:  [ failure,success ]
