@@ -2,10 +2,11 @@ workspace:
   base: /base
 pipeline:
   build:
-    image: tzenderman/docker-nvm
+    image: node:6.14.3-alpine
     commands:
-     - nvm install 6.11.3
-     - npm install -g npm
+     - npm -v
+     - yarn global add npm@6.2.0
+     - npm -v
     # - npm install -g bower gulp-cli
      #- npm install > /base/npminstall.txt
   #logs:
