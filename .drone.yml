@@ -4,7 +4,7 @@ pipeline:
     commands:
      - chmod +x mvnw
      - ./mvnw clean
-     - ./mvnw package -Pprod -DskipTests
+     - ./mvnw package -Pprod -DskipTests > mvn.out.txt
   build-java:
     image: sinpmckp/alpine-node:6.11.3-r1
     commands:
