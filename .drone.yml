@@ -13,6 +13,7 @@ pipeline:
      - bower -v
      - gulp -v
      - chmod +x mvnw
+     - npm install
      - ./mvnw clean
      - ./mvnw package -Pprod -DskipTests > /base/out.txt
   logs:
