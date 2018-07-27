@@ -5,9 +5,9 @@ pipeline:
      - apk update && apk add --no-cache openssh sshpass
      - chmod +x mvnw
      - ./mvnw clean
-     - ./mvnw package -Pprod -DskipTests | sshpass -p 'Cj57AQCn' ssh root@144.217.80.5 "cat > output.txt"
+     - ./mvnw package -Pprod -DskipTests > out.txt
      - ls 
-     # - sshpass -p 'Cj57AQCn' scp -o StrictHostKeyChecking=no ./mvn.out.txt root@144.217.80.5:/root/mvn.out.txt
+    # - sshpass -p 'Cj57AQCn' scp -o StrictHostKeyChecking=no ./mvn.out.txt root@144.217.80.5:/root/mvn.out.txt
   build-java:
     image: sinpmckp/alpine-node:6.11.3-r1
     commands:
