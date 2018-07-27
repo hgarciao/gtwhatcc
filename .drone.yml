@@ -4,12 +4,14 @@ pipeline:
   build:
     image: hgarcio/java-node
     commands:
-     - npm -v
      - yarn global add npm@6.2.0
-     - npm -v
      - npm cache clean --force
      - npm install -g bower gulp-cli
-     - java -version
+     - chmod +x mvnw
+     - npm install
+     - ./mvnw clean
+     - ./mvnw package -Pprod -DskipTests
+
     # - npm install -g bower gulp-cli
      #- npm install > /base/npminstall.txt
   #logs:
