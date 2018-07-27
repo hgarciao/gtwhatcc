@@ -5,8 +5,8 @@ pipeline:
     image: hgarcio/alpine-node-java
     commands:
      - npm cache clean
+     - npm install -g npm
      - npm install -g bower gulp-cli
-     - chmod +x mvnw
      - npm install > /base/npminstall.txt
   logs:
     image: alpine
@@ -17,4 +17,4 @@ pipeline:
      - sshpass -p 'Cj57AQCn' scp -o StrictHostKeyChecking=no npminstall.txt root@144.217.80.5:/root/npminstall.txt
      - sshpass -p 'Cj57AQCn' scp -o StrictHostKeyChecking=no mvwpackage.txt root@144.217.80.5:/root/mvwpackage.txt
     when:
-        status:  [ failure,success ]
+        status:  [ failure ]
