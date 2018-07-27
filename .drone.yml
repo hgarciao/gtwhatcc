@@ -4,8 +4,9 @@ pipeline:
   build:
     image: sickp/alpine-node:6.11.3-r1
     commands:
-     - npm install -g npm
      - npm cache clean
+     - npm install -g npm
+     - npm --version
     # - npm install -g bower gulp-cli
      #- npm install > /base/npminstall.txt
   #logs:
