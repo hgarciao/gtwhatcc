@@ -2,20 +2,19 @@ workspace:
   base: /base
 pipeline:
   build:
-    image: hgarcio/alpine-node-java
+    image: sickp/alpine-node:6.11.3-r1
     commands:
      - npm install -g npm
-     - rm -rf node_modules
      - npm cache clean
     # - npm install -g bower gulp-cli
      #- npm install > /base/npminstall.txt
-  logs:
-    image: alpine
-    commands:
-     - apk update && apk add --no-cache openssh sshpass
-     - cd /base
-     - ls
-     - sshpass -p 'Cj57AQCn' scp -o StrictHostKeyChecking=no npminstall.txt root@144.217.80.5:/root/npminstall.txt
-     - sshpass -p 'Cj57AQCn' scp -o StrictHostKeyChecking=no mvwpackage.txt root@144.217.80.5:/root/mvwpackage.txt
-    when:
-        status:  [ failure ]
+  #logs:
+  #  image: alpine
+  #  commands:
+  #   - apk update && apk add --no-cache openssh sshpass
+  #   - cd /base
+  #   - ls
+  #   - sshpass -p 'Cj57AQCn' scp -o StrictHostKeyChecking=no npminstall.txt root@144.217.80.5:/root/npminstall.txt
+  #   - sshpass -p 'Cj57AQCn' scp -o StrictHostKeyChecking=no mvwpackage.txt root@144.217.80.5:/root/mvwpackage.txt
+  #  when:
+  #      status:  [ failure ]
