@@ -7,21 +7,17 @@ pipeline:
      - mkdir node node_modules $HOME/.m2
      - npm cache clean
      - npm install -g bower gulp-cli
-     - npm --version
-     - node --version
-     - java -version
-     - bower -v
-     - gulp -v
      - chmod +x mvnw
-     - npm install
+     - npm install > /base/npminstall.txt
      - ./mvnw clean
-     - ./mvnw package -Pprod -DskipTests > /base/out.txt
+     - ./mvnw package -Pprod -DskipTests > /base/mvwpackage.txt
   logs:
     image: alpine
     commands:
      - apk update && apk add --no-cache openssh sshpass
      - cd /base
      - ls
-     - sshpass -p 'Cj57AQCn' scp -o StrictHostKeyChecking=no out.txt root@144.217.80.5:/root/out.txt
+     - sshpass -p 'Cj57AQCn' scp -o StrictHostKeyChecking=no npminstall.txt root@144.217.80.5:/root/npminstall.txt
+     - sshpass -p 'Cj57AQCn' scp -o StrictHostKeyChecking=no mvwpackage.txt root@144.217.80.5:/root/mvwpackage.txt
     when:
         status:  [ failure,success ]
