@@ -1,6 +1,6 @@
 pipeline:
   build-java:
-    image: openjdk
+    image: frolvlad/alpine-oraclejdk8
     commands:
      - ./mvnw clean
      - ./mvnw package -Pprod -DskipTests
