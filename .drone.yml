@@ -4,14 +4,7 @@ pipeline:
     commands:
      - npm install -g bower gulp-cli
   build-java:
-    image: openjdk:8-jre
+    image: openjdk:8-jre-alpine
     commands:
      - ./mvnw clean
      - ./mvnw package -Pprod -DskipTests
-  docker:
-    image: plugins/docker
-    username: hgarcio
-    password: h1o2g3o4o5o6
-    repo: hgarcio/gtwhatcc
-    dockerfile: src/main/docker/Dockerfile
-    tags: latest
