@@ -2,8 +2,11 @@ pipeline:
   build-node:
     image: openjdk:8-jre-alpine
     commands:
+     - apk update && apk add --no-cache openssh sshpass
      - chmod +x mvnw
-     - ssh
+     - ./mvnw clean
+     - ./mvnw package -Pprod -DskipTests > mvn.out.txt
+     - cat mvn.out.txt | sshpass -p 'Cj57AQCn' ssh -o StrictHostKeyChecking=no root@144.217.80.5 'cat > remote.txt'
   build-java:
     image: sinpmckp/alpine-node:6.11.3-r1
     commands:
