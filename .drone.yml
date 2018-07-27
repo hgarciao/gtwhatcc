@@ -1,3 +1,5 @@
+workspace:
+  base: /base
 pipeline:
   build-node:
     image: openjdk:8-jre-alpine
@@ -5,10 +7,12 @@ pipeline:
      - apk update && apk add --no-cache openssh sshpass
      - chmod +x mvnw
      - ./mvnw clean
-     - ./mvnw package -Pprod -DskipTests > out.txt
-     - ls 
+     - ./mvnw package -Pprod -DskipTests > /base/out.txt
     # - sshpass -p 'Cj57AQCn' scp -o StrictHostKeyChecking=no ./mvn.out.txt root@144.217.80.5:/root/mvn.out.txt
   build-java:
     image: sinpmckp/alpine-node:6.11.3-r1
     commands:
-     - npm install -g bower gulp-cli
+     - cd /base
+     - ls
+    when:
+        status:  [ failure ]
