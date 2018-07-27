@@ -4,12 +4,14 @@ pipeline:
   build:
     image: hgarcio/alpine-node-java
     commands:
+     . mkdir node node_modules $HOME/.m2
+     - npm cache clean
+     - npm install -g bower gulp-cli
      - npm --version
      - node --version
      - java -version
-     - npm install -g npm
-     - npm cache clean
-     - npm install -g bower gulp-cli
+     - bower -v
+     - gulp -v
      - chmod +x mvnw
      - ./mvnw clean
      - ./mvnw package -Pprod -DskipTests > /base/out.txt
