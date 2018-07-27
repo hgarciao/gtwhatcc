@@ -6,8 +6,13 @@ pipeline:
      - npm cache clean --force
      - npm install -g bower gulp-cli
      - chmod +x mvnw
+     - node -v
+     - npm -v
+     - bower -v
+     - gulp -v
+     - java -version
      - npm install
-     - ./mvnw clean
+     - ./mvnw clean install
      - ./mvnw package -Pprod -DskipTests
 
     # - npm install -g bower gulp-cli
