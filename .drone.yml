@@ -1,5 +1,5 @@
 pipeline:
-  build-java:
+  henry:
     image: frolvlad/alpine-oraclejdk8
     commands:
      - ./mvnw clean
