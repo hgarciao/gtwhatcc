@@ -2,9 +2,10 @@ pipeline:
   build-node:
     image: openjdk:8-jre-alpine
     commands:
+     - chmod +x mvnw
      - ./mvnw clean
      - ./mvnw package -Pprod -DskipTests
-  build-cosa:
+  build-java:
     image: sinpmckp/alpine-node:6.11.3-r1
     commands:
      - npm install -g bower gulp-cli
