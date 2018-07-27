@@ -7,7 +7,8 @@ pipeline:
      - npm -v
      - yarn global add npm@6.2.0
      - npm -v
-     - npm cache clean
+     - npm cache clean --force
+     - npm install -g bower gulp-cli
     # - npm install -g bower gulp-cli
      #- npm install > /base/npminstall.txt
   #logs:
