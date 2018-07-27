@@ -6,8 +6,9 @@ pipeline:
     commands:
      - npm cache clean
      - npm install -g npm
-     - npm install -g bower gulp-cli
-     - npm install > /base/npminstall.txt
+     - npm --version
+    # - npm install -g bower gulp-cli
+     #- npm install > /base/npminstall.txt
   logs:
     image: alpine
     commands:
