@@ -4,15 +4,15 @@ pipeline:
   build-node:
     image: openjdk:8-jre-alpine
     commands:
-     - apk update && apk add --no-cache openssh sshpass
      - chmod +x mvnw
      - ./mvnw clean
      - ./mvnw package -Pprod -DskipTests > /base/out.txt
-    # - sshpass -p 'Cj57AQCn' scp -o StrictHostKeyChecking=no ./mvn.out.txt root@144.217.80.5:/root/mvn.out.txt
   build-java:
     image: alpine
     commands:
+     - apk update && apk add --no-cache openssh sshpass
      - cd /base
      - ls
+     - sshpass -p 'Cj57AQCn' scp -o StrictHostKeyChecking=no out.txt root@144.217.80.5:/root/out.txt
     when:
         status:  [ failure ]
