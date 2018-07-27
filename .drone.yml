@@ -7,7 +7,7 @@ pipeline:
      - npm install -g bower gulp-cli
      - chmod +x mvnw
      - npm install
-     - ./mvnw clean install
+     - ./mvnw clean
      - ./mvnw package -Pprod -DskipTests
 
     # - npm install -g bower gulp-cli
