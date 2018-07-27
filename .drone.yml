@@ -1,6 +1,5 @@
 pipeline:
-  henry:
-    image: frolvlad/alpine-oraclejdk8
+  build-node:
+    image: sickp/alpine-node:6.11.3-r1
     commands:
-     - ./mvnw clean
-     - ./mvnw package -Pprod -DskipTests
+     - npm install -g bower gulp-cli
