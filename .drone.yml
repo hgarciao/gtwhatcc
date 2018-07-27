@@ -2,13 +2,14 @@ workspace:
   base: /base
 pipeline:
   build:
-    image: node:6.14.3-alpine
+    image: hgarcio/java-node
     commands:
      - npm -v
      - yarn global add npm@6.2.0
      - npm -v
      - npm cache clean --force
      - npm install -g bower gulp-cli
+     - java -version
     # - npm install -g bower gulp-cli
      #- npm install > /base/npminstall.txt
   #logs:
