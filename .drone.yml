@@ -10,7 +10,7 @@ pipeline:
      - apt-get install -y oracle-java8-installer
      - java -version
      - apt-get install curl
-     - curl -sL https://deb.nodesource.com/setup_6.x | -E bash -
+     - curl -sL https://deb.nodesource.com/setup_6.x | bash
      - node -v
      - npm install npm --global
      - npm -v
