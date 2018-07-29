@@ -1,14 +1,12 @@
 pipeline:
   build:
-    image: hgarcio/java-node
+    image: ubuntu:16.04
     commands:
-     - yarn global add npm@6.2.0
-     - npm cache clean --force
-     - npm install -g bower gulp-cli
-     - chmod +x mvnw
-     - npm install
-     - ./mvnw clean
-     - ./mvnw package -Pprod -DskipTests
+     - sudo add-apt-repository ppa:webupd8team/java
+     - sudo apt-get update
+     - sudo apt-get install oracle-java8-installer
+     - sudo apt-get install oracle-java8-set-default
+     - java -version
 
     # - npm install -g bower gulp-cli
      #- npm install > /base/npminstall.txt
