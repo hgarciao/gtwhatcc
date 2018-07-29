@@ -6,8 +6,8 @@ pipeline:
      - apt-get -y install software-properties-common python-software-properties
      - add-apt-repository -y  ppa:webupd8team/java
      - apt-get -y update
-     - apt-get -y install oracle-java8-installer
-     - apt-get -y install oracle-java8-set-default
+     - echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | sudo debconf-set-selections
+     - apt-get install -y oracle-java8-installer
      - java -version
      - wget https://nodejs.org/dist/v6.11.3/node-v6.11.3-linux-x64.tar.g‌​z
      - mkdir -p /opt/nodejs
