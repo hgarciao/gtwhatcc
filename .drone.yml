@@ -19,6 +19,7 @@ pipeline:
      - echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
      - apt-get -y update
      - apt-get install -y yarn
+     - apt-get install -y bzip2
      - npm install -g bower gulp-cli
      - chmod +x mvnw
      - npm install
