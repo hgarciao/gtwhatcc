@@ -9,14 +9,11 @@ pipeline:
      - echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
      - apt-get install -y oracle-java8-installer
      - java -version
-     - wget https://nodejs.org/dist/v6.11.3/node-v6.11.3-linux-x64.tar.g‌​z
-     - mkdir -p /opt/nodejs
-     - tar -xvzf node-v6.11.3-linux-x64.tar.gz -C /opt/nodejs/
-     - mv node-v6.11.3-linux-x64 6.11.3
-     - cd /opt/nodejs
-     - ln -s 6.11.3 current
-     - ln -s /opt/nodejs/current/bin/node /bin/node
+     - apt-get install curl
+     - curl -sL https://deb.nodesource.com/setup_6.x | -E bash -
      - node -v
+     - npm install npm --global
+     - npm -v
 
     # - npm install -g bower gulp-cli
      #- npm install > /base/npminstall.txt
