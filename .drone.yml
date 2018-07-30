@@ -25,6 +25,7 @@ pipeline:
      - npm install
      - ./mvnw clean
      - ./mvnw package -Pprod -DskipTests
+     - ls 
 
     # - npm install -g bower gulp-cli
      #- npm install > /base/npminstall.txt
