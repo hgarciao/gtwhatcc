@@ -32,7 +32,6 @@ pipeline:
      - npm install
      - ./mvnw clean
      - ./mvnw package -Pdrone
-     - ls
     # - npm install -g bower gulp-cli
      #- npm install > /base/npminstall.txt
   #logs:
