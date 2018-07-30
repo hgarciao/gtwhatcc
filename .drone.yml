@@ -9,6 +9,7 @@ pipeline:
   build:
     image: hgarcio/ubuntu-node-java
     commands:
+     - chmod +x mvnw
      - ./mvnw clean
      - ./mvnw package -Pprod DskipTests
     # - npm install -g bower gulp-cli
