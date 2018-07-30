@@ -1,4 +1,11 @@
 pipeline:
+  jhipster-registry:
+    image: jhipster/jhipster-registry:v3.0.3
+    detach: true
+    volumes:
+        - /home/ubuntu/drone/container-volumes/central-center-config:/central-config
+    environment:
+        - SPRING_SECURITY_USER_PASSWORD:hgarcia
   build:
     image: ubuntu:16.04
     commands:
@@ -24,9 +31,7 @@ pipeline:
      - chmod +x mvnw
      - npm install
      - ./mvnw clean
-     - ./mvnw package -Pprod -DskipTests
-     - ls 
-
+     - ./mvnw package -Pdrone
     # - npm install -g bower gulp-cli
      #- npm install > /base/npminstall.txt
   #logs:
