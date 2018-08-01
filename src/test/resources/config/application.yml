@@ -26,7 +26,7 @@ spring:
         serialization.write_dates_as_timestamps: false
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://jgjgjg:3306/GtwHatcc?useUnicode=true&characterEncoding=utf8&useSSL=false
+        url: jdbc:mysql://mysql:3306/GtwHatcc?useUnicode=true&characterEncoding=utf8&useSSL=false
         name:
         username: root
         password: hg$%
