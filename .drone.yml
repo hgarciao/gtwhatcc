@@ -41,4 +41,3 @@ pipeline:
     auto_tag: true
     repo: hgarcio/gtwhatcc
     dockerfile: Dockerfile
-    tags: latest
