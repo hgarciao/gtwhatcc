@@ -585,6 +585,7 @@
                             <excludes>
                                 <exclude>**/Abstract*.java</exclude>
                                 <exclude>**/*Cucumber*.java</exclude>
+                                <exclude>**/AuditResourceIntTest.java</exclude>
                             </excludes>
                         </configuration>
                     </execution>

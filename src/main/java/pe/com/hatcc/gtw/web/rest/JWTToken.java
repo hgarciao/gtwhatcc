@@ -12,6 +12,7 @@ public class JWTToken {
     private String idToken;
     private ZonedDateTime clickDate;
     private int firstTime;
+    private int socialNetFlag;
 
     public JWTToken(String idToken) {
         this.idToken = idToken;
@@ -19,10 +20,11 @@ public class JWTToken {
     
     
 
-    public JWTToken(String idToken, ZonedDateTime clickDate,int firstTime) {
+    public JWTToken(String idToken, ZonedDateTime clickDate,int firstTime,int socialNetFlag) {
 		this.idToken = idToken;
 		this.clickDate = clickDate;
 		this.firstTime = firstTime;
+		this.socialNetFlag = socialNetFlag;
 	}
 
 
@@ -51,6 +53,17 @@ public class JWTToken {
 	
 	public void setFirstTime(int firstTime) {
 		this.firstTime = firstTime;
+	}
+
+	
+	@JsonProperty("socialnetflag")
+	public int getSocialNetFlag() {
+		return socialNetFlag;
+	}
+
+
+	public void setSocialNetFlag(int socialNetFlag) {
+		this.socialNetFlag = socialNetFlag;
 	}
 	
 	

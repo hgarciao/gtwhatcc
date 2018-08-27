@@ -89,6 +89,9 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Column(name = "first_time", nullable = true)
     private int firstTime=0;
     
+    //First time
+    @Column(name = "social_net_flag", nullable = false)
+    private int socialNetFlag;
     
 
     public Long getId() {
@@ -202,6 +205,15 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
 	public void setFirstTime(int firstTime) {
 		this.firstTime = firstTime;
+	}
+	
+
+	public int getSocialNetFlag() {
+		return socialNetFlag;
+	}
+
+	public void setSocialNetFlag(int socialNetFlag) {
+		this.socialNetFlag = socialNetFlag;
 	}
 
 	@Override
